@@ -1,0 +1,113 @@
+local ScreenGui1 = Instance.new("ScreenGui")
+local ImageButton1 = Instance.new("ImageButton")
+local UICorner = Instance.new("UICorner")
+
+ScreenGui1.Name = "ImageButton"
+ScreenGui1.Parent = game.CoreGui
+ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ImageButton1.Parent = ScreenGui1
+ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageButton1.BorderSizePixel = 0
+ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+ImageButton1.Size = UDim2.new(0, 50, 0, 50)
+ImageButton1.Draggable = true
+ImageButton1.Image = "rbxassetid://15445423654"
+ImageButton1.MouseButton1Down:connect(function()
+  game:GetService("VirtualInputManager"):SendKeyEvent(true,"RightShift",false,game)
+  game:GetService("VirtualInputManager"):SendKeyEvent(false,"RightShift",false,game)
+end)
+
+UICorner.Parent = ImageButton1
+
+if game.PlaceId == 7896264844 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/anel0982/Orion/main/Hhhbhbbbtest')))()
+local Window = OrionLib:MakeWindow({Name = "Uriel Hub| Find the markers", HidePremium = false, IntroText = "Uriel Hub", IntroEnabled = true, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Main = Window:MakeTab({
+	Name = "Home",
+	Icon = "rbxassetid://7733960981",
+	PremiumOnly = false
+})
+
+local Section = Main:AddSection({
+	Name = "Main"
+})
+
+OrionLib:MakeNotification({
+	Name = "Thank for use script",
+	Content = "Script by Uriel",
+	Image = "rbxassetid://4483345998",
+	Time = 4
+})
+
+Main:AddParagraph("Script Find the Markers","Script +Tp markers +Esp Markers +Fly")
+
+Main:AddButton({
+	Name = "Esp markers",
+	Callback = function()
+      		local Attach1 = Instance.new("Attachment")
+		Attach1.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			if string.find(v.Name, "Marker") ~= nil then
+				local attach2 = Instance.new("Attachment")
+				attach2.Parent = v:FindFirstChildWhichIsA("Part")
+				local line = Instance.new("Beam")
+				line.Parent = v:FindFirstChildWhichIsA("Part")
+				line.Attachment0 = Attach1
+				line.Attachment1 = attach2
+				line.FaceCamera = true
+				line.Width0 = .1
+				line.Width1 = .1
+			end
+		end
+  	end    
+})
+
+Main:AddButton({
+	Name = "Tp markers",
+	Callback = function()
+      		local MarkerTable = {}
+		for i,v in pairs(game.Workspace:GetChildren()) do
+			if string.find(v.Name, "Marker") ~= nil then
+				table.insert(MarkerTable, v)
+			end
+		end
+		local e = 0
+		for _ in pairs(MarkerTable) do e = e + 1; end
+		local ran = math.random(1, e)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = MarkerTable[ran]:FindFirstChildWhichIsA("Part").CFrame
+  	end    
+})
+
+Main:AddButton({
+	Name = "Fly",
+	Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/anel0982/Fly/main/Fly"))()
+	end    
+})
+
+local Credit = Window:MakeTab({
+	Name = "Credit",
+	Icon = "rbxassetid://7733658133",
+	PremiumOnly = false
+})
+
+local Section = Credit:AddSection({
+	Name = "credit"
+})
+
+Credit:AddButton({
+	Name = "https://discord.com/invite/ZGuaAArT6H",
+	Callback = function()
+setclipboard("https://discord.com/invite/ZGuaAArT6H") 
+  	end    
+})
+
+Credit:AddLabel("Credit by Uriel Tempest")
+Credit:AddLabel("Script made in Vietnamese")
+Credit:AddLabel("Thank for use script")
+
+end
+OrionLib:Init()
+
